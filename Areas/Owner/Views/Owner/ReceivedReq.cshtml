@@ -15,7 +15,6 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Listing">Property</a></li>
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
 
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
@@ -32,13 +31,13 @@
 <br />
 <div class="container" >
     @*<div class="row">*@
-        <table class="table table-bordered" id="nt2">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     @*<th>Image</th>
         <th>Name</th>
         <th>Monthly Rent</th>*@
-                    <th>Circulation Name</th>
+                    <th>Property Name</th>
                     <th>Image</th>
                     <th>Location</th>
                     <th>Tenant's Email</th>
@@ -55,16 +54,15 @@
                     @*<td>
             <img src="~/@item.Image" width="200px" height="150px" />
         </td>*@
-                    <td><a asp-action="Detail" asp-controller="Owner" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info">@item.CDetails.Name</a></td>
+                    <td>@item.CDetails.Name</td>
                     <td><img src="~/@item.CDetails.Image" width="200px" height="150px" /></td>
                     <td>@item.CDetails.Location</td>
                     <td>@item.TDetails.TEmail</td>
                     <td>@item.TDetails.TName</td>
                     <td>@item.TDetails.TPhone</td>
                     <td>@item.VDetails.ReqDate</td>
-                    <td> <a asp-area="Tenant" asp-action="ApproveRequest" asp-controller="Home" asp-route-id="@Model" class="btn btn-primary">Approve</a>
-                    </td>
-                    <td> <a asp-area="Tenant" asp-action="DenyRequest" asp-controller="Home" asp-route-id="@Model" class="btn btn-primary">Deny</a>
+                    <td> <span><a asp-area="Tenant" asp-action="ApproveRequest" asp-controller="Home" asp-route-id="@Model" class="btn btn-success">Approve</a></span>
+                    <span><a asp-area="Tenant" asp-action="DenyRequest" asp-controller="Home" asp-route-id="@Model" class="btn btn-danger">Deny</a></span>
                     </td>
                 </tr>
                 }
@@ -72,18 +70,3 @@
         </table>
     @*</div>*@
 </div>
-
-
-@section scripts
-{
-
-    <script type="text/javascript">
-
-        $(document).ready( function () {
-    $('#nt2').DataTable();
-        });
-
-
-    </script>
-
-}

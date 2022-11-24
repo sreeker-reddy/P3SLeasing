@@ -4,7 +4,7 @@
 }
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">Rent<span>Quest</span></a>
+            <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">P3S<span>Leasing</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
@@ -12,9 +12,7 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Listing">Property</a></li>
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
-
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
                     <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">@ViewBag.sessionv</a></li>
 
@@ -28,7 +26,7 @@
     </nav>
 <br />
 
-<h2 class="text-info">Edit Circulation</h2>
+<h2 class="text-info">Edit Property</h2>
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="p-4 rounded border row">
         <div asp-validation-summary="ModelOnly" class="text-danger">

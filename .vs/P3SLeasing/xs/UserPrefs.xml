@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{253F37A9-5D55-427C-A929-86151C695222}|RentQuest">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Areas/Owner/Views/Owner/ReceivedReq.cshtml">
+    <Files>
+      <File FileName="Areas/Owner/Views/Owner/ReceivedReq.cshtml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="P3SLeasing" expanded="True">
+            <Node name="P3SLeasing" expanded="True">
+              <Node name="Areas" expanded="True">
+                <Node name="Owner" expanded="True">
+                  <Node name="Views" expanded="True">
+                    <Node name="Owner" expanded="True">
+                      <Node name="ReceivedReq.cshtml" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.P3SLeasing PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
