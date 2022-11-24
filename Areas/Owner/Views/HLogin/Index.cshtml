@@ -1,0 +1,129 @@
+﻿@model RentQuest.Models.OwLogin
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+
+    <!--===============================================================================================-->
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--=========================================~/======================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Unregistered" asp-controller="Unreg" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Unregistered" asp-controller="Unreg" asp-action="Listing">Property</a></li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Menu" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-In</a></li>
+                    <li class="nav-item cta cta-colored"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Menu2" class="nav-link"><span class="icon-pencil"></span> Sign-Up</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 ">
+
+                <form asp-action="Index">
+
+                    <div class="login100-form validate-form">
+                        <span class="login100-form-logo">
+                            <i class="zmdi zmdi-home"></i>
+                        </span>
+
+                        <span class="login100-form-title p-b-34 p-t-27">
+                            Log in
+                        </span>
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="H_Email" class="control-label zmdi zmdi-email"></label>
+                            <input asp-for="H_Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="H_Email" class="txt1"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="H_Password" class="control-label zmdi zmdi-lock-open"></label>
+                            <input asp-for="H_Password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="H_Password" class="txt1"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="container-login100-form-btn">
+                                <input type="submit" value="Login" class="btn btn-primary login100-form-btn" />
+                            </div>
+
+                        </div>
+
+                        <h1 class="txt1">@Html.ViewData["WMessage"]</h1>
+
+
+
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="~/vendor/jquerylogin/jquery-3.2.1.min.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/vendor/animsition/js/animsition.min.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/vendor/countdowntime/countdowntime.js"></script>
+    <!--=========~/======================================================================================-->
+    <script src="~/js/main.js"></script>
+
+
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

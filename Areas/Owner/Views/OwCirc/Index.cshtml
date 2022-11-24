@@ -1,0 +1,153 @@
+﻿@using RentQuest.Models;
+@model IEnumerable<Circulations>
+@{
+    ViewData["Title"] = "Index";
+}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">Rent<span>Quest</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Listing">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
+
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">@ViewBag.sessionv</a></li>
+
+
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Property List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Add New Property</a>
+    </div>
+</div>
+
+<div class="container">
+    <form method="post">
+        <div class="row">
+            <div class="col-3">
+                <label>Rent Low Amount</label>
+                <input type="number" class="form-control" name="lowamount" />
+            </div>
+            <div class="col-3">
+                <label>Rent High Amount</label>
+                <input type="number" class="form-control" name="highamount" />
+            </div>
+            <div class="col-3">
+                <label>Custom Search</label>
+                <input type="submit" class="form-control" value="Search" class="btn btn-success" />
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div>
+        <table class="table table-striped border" id="new3">
+            <thead>
+                <tr class="table-info">
+                    <th>
+                        @Html.DisplayNameFor(c => c.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Monthly_Rent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Location)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.isAvailable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.CircTypes.CircType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Cdetails)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Flat_No)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.House_No)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.SizeSQFT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.num_bath)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.num_bed)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Monthly_Rent</td>
+                    <td>@item.Location</td>
+                    <td>@item.isAvailable</td>
+                    <td>@item.CircTypes.CircType</td>
+                    <td>@item.Cdetails</td>
+                    <td>@item.Flat_No</td>
+                    <td>@item.House_No</td>
+                    <td>@item.SizeSQFT</td>
+                    <td>@item.num_bath</td>
+                    <td>@item.num_bed</td>
+                    <td>
+                        <partial name="_button2PartialView" model="@item.Id" />
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+    </div>
+
+    @section scripts
+{
+        @*<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>*@
+
+        <script type="text/javascript">
+
+        $(document).ready( function () {
+    $('#new3').DataTable();
+        });
+
+       @*$(function()
+       {
+           var save = '@TempData["save"]'
+           if (save != null) {
+               alertify.success(save);
+           }
+       })*@
+        </script>
+
+    }
+
+

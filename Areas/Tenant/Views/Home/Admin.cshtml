@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+}
+
+
+
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    int count = 0;
+    List<Circulations> cl = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+    if (cl == null)
+    {
+        cl = new List<Circulations>();
+    }
+    count = cl.Count();
+}
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Listing">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WLSecond">Your Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="SentReq">Sent Requests</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WL">
+                            Request Queue<i class="fas fa-heart"></i>
+                            (@count)
+                        </a>
+                    </li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RentQuest</a>*@
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                @*<partial name="_LoginPartial" />*@
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="CircTypes" asp-action="Index">Circulation Type</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Circulation" asp-action="Index">Circulation</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+

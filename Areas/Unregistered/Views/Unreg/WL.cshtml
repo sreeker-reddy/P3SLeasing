@@ -1,0 +1,55 @@
+﻿@using RentQuest.Models
+@model List<Circulations>
+@{
+    ViewData["Title"] = "WL";
+}
+
+<h1>Your Wishlist</h1>
+
+<br/>
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Monthly Rent</th>
+                <th>Circulation Type</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <img src="~/@item.Image" width="200px" height="150px" />
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Monthly_Rent</td>
+                <td>@item.CircTypes.CircType</td>
+                <td>@item.Location</td>
+                <td>
+                    <a asp-area="Tenant" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-success">Back to Home</a>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-area="Tenant" asp-action="SendReq" asp-controller="VisitRequest" class="btn btn-info">Request Visit</a>
+    </div>
+</div>
+
+
+

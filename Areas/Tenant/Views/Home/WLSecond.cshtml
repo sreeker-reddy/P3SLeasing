@@ -1,0 +1,107 @@
+﻿@using RentQuest.Models
+@model IEnumerable<RentQuest.Models.TenCircWLClass>
+
+@{
+    ViewData["Title"] = "WLSecond";
+}
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    int count = 0;
+    List<Circulations> circulations = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+    if (circulations == null)
+    {
+        circulations = new List<Circulations>();
+    }
+    count = circulations.Count();
+}
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Listing">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WLSecond"><i class="fas fa-heart"></i>Your Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="SentReq">Sent Requests</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WL">
+                            Request Queue
+                            (@count)
+                        </a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">@ViewBag.sessionv</a></li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<br />
+<form asp-action="" method="post" enctype="multipart/form-data">
+    <div class="container">
+        @*<div class="row">*@
+        <table class="table table-bordered" id="newtable">
+            <thead>
+                <tr>
+                    @*<th>Image</th>
+                        <th>Name</th>
+                        <th>Monthly Rent</th>*@
+                    <th>Circulation Name</th>
+                    <th>Image</th>
+                    <th>Location</th>
+                    <th>Monthly Rent</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @*<td>
+                                <img src="~/@item.Image" width="200px" height="150px" />
+                            </td>*@
+                        <td><a asp-action="Detail" asp-controller="Home" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info">@item.CDetails.Name</a></td>
+                        <td><img src="~/@item.CDetails.Image" width="200px" height="150px" /></td>
+                        <td>@item.CDetails.Location</td>
+                        <td>@item.CDetails.Monthly_Rent</td>
+                        <td><input asp-action="DeleteWL" type="submit" class="btn btn-danger" asp-route-id="@item.CDetails.Id" value="Delete" /></td>
+                        @*<td>@item.CircTypes.CircType</td>
+                            <td>@item.Location</td>*@
+                        @*<td>
+                                <a asp-area="Tenant" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @*</div>*@
+
+    </div>
+</form>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#newtable').DataTable();
+        });
+
+
+    </script>
+
+}

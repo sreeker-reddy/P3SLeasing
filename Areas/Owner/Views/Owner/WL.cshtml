@@ -1,0 +1,96 @@
+﻿@using RentQuest.Models
+@model List<Circulations>
+@{
+    ViewData["Title"] = "WL";
+}
+
+
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    int count = 0;
+    List<Circulations> cp = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+    if (cp == null)
+    {
+        cp = new List<Circulations>();
+    }
+    count = cp.Count();
+}
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Listing">Property</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WL">
+                            WishList<i class="fas fa-heart"></i>
+                            (@count)
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Admin">Admin</a></li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+                    @*<li class="nav-item cta cta-colored"><a href="Contact.cshtml" class="nav-link"><span class="icon-pencil"></span> Sign-Up</a></li>*@
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<h1>Your Wishlist</h1>
+
+<br />
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Monthly Rent</th>
+                <th>Circulation Type</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@item.Image" width="200px" height="150px" />
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.Monthly_Rent</td>
+                    <td>@item.CircTypes.CircType</td>
+                    <td>@item.Location</td>
+                    <td>
+                        <a asp-area="Tenant" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-success">Back to Home</a>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-area="Tenant" asp-action="SendReq" asp-controller="VisitRequest" class="btn btn-info">Request Visit</a>
+    </div>
+</div>
+
+
+

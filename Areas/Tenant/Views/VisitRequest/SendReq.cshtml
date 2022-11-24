@@ -1,0 +1,180 @@
+﻿@model RentQuest.Models.VisitRequest
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    ViewData["Title"] = "Request Details";
+}
+
+@{
+
+    List<Circulations> circulations = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+
+    if (circulations == null)
+    {
+        circulations = new List<Circulations>();
+    }
+
+}
+
+@{
+    int count = 0;
+    List<Circulations> cc = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+    if (cc == null)
+    {
+        cc = new List<Circulations>();
+    }
+    count = cc.Count();
+}
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Listing">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WLSecond"><i class="fas fa-heart"></i>Your Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="SentReq">Sent Requests</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="WL">
+                            Request Queue
+                            (@count)
+                        </a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">@ViewBag.sessionv</a></li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<br />
+
+<h2 class="text-info">Request Confirmation</h2>
+<form asp-action="" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border row">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="col-6">
+            @*<div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-8">
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="PhoneNo"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+
+        </div>*@
+
+            @*<div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Address"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+        </div>*@
+            @*<div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-8">
+
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+        </div>*@
+            @*<div class="form-group row">
+            <div class="col-4">
+                <label asp-for="ReqDate"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="ReqDate" class="form-control" />
+                <span asp-validation-for="ReqDate" class="text-danger"></span>
+            </div>
+
+        </div>*@
+
+            <div class="sidebar-box ftco-animate">
+                <h2>Reminder</h2>
+                <div>The property owner will get the personal information you gave when you signed up</div>
+            </div>
+
+        </div>
+
+        <div class="col-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Monthly Rent</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in circulations)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/@item.Image" height="100px" width="150px" />
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.Location</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.ViewData["Vis"]
+            <div class="form-group text-right">
+
+                <input type="submit" value="Send Request" class="btn btn-success" />
+
+
+                @*@if (circulations != null)
+                {
+            <input type="submit" value="Send Request" class="btn btn-success" />
+                }
+                else
+                {
+                    <a class="nav-link" asp-area="Tenant" asp-controller="Home" asp-action="Index">Back to home </a>
+                }*@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
+

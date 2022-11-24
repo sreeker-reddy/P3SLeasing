@@ -1,0 +1,52 @@
+﻿@using RentQuest.Models;
+@model IEnumerable<CircTypes>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br/><br/>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Circulation Type List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Circulation Type</a>
+        </div>
+    </div>
+<br/>
+    <div>
+        <table class="table table-striped border">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(c=>c.CircType)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.CircType</td>
+                    <td>
+                        <partial name="_ButtonPartial" model="@item.Id"/>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+@section scripts
+{
+   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script> 
+   <script type="text/javascript">
+       $(function()
+       {
+           var save = '@TempData["save"]'
+           if (save != null) {
+               alertify.success(save);
+           }
+       })
+    </script>
+    
+}
+

@@ -1,0 +1,211 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@*@using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager
+    @inject UserManager<IdentityUser> UserManager*@
+
+@*@{
+        int count = 0;
+        List<Circulations> circulations = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+        if (circulations == null)
+        {
+            circulations = new List<Circulations>();
+        }
+        count = circulations.Count();
+    }*@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">P3S<span>Leasing</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">@ViewBag.sessionv</a></li>
+
+
+                <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image:url(/Content/images/bp.jpg);">
+        <div class="overlay"></div>
+    </div>
+
+
+    <div class="slider-item" style="background-image:url(/Content/images/b.jpg);">
+        <div class="overlay"></div>
+    </div>
+
+
+
+    <div class="slider-item" style="background-image:url(/Content/images/bg_2.jpg);">
+        <div class="overlay"></div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-properties">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <span class="subheading">Recent Posts</span>
+                <h2 class="mb-4">Recent Properties</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="properties-slider owl-carousel ftco-animate">
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-1.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <span class="status sale">Sale</span>
+                                <div class="d-flex">
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$20,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-2.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <div class="d-flex">
+                                    <span class="status rent">Rent</span>
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$2,000 <small>/ month</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-3.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <span class="status sale">Sale</span>
+                                <div class="d-flex">
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$20,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-4.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <span class="status sale">Sale</span>
+                                <div class="d-flex">
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$20,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-5.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <span class="status rent">Rent</span>
+                                <div class="d-flex">
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$900 <small>/ month</small></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="properties">
+                            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url(/Content/images/properties-6.jpg);">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="icon-search2"></span>
+                                </div>
+                            </a>
+                            <div class="text p-3">
+                                <span class="status sale">Sale</span>
+                                <div class="d-flex">
+                                    <div class="one">
+                                        <h3><a href="#">North Parchmore Street</a></h3>
+                                        <p>Apartment</p>
+                                    </div>
+                                    <div class="two">
+                                        <span class="price">$20,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*<p>
+        @if (!string.IsNullOrEmpty(ViewBag.sessionv))
+        {
+        <h2>welcome @ViewBag.sessionv</h2>
+        }
+
+    </p>*@

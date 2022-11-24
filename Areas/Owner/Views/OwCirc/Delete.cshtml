@@ -1,0 +1,167 @@
+﻿@model RentQuest.Models.Circulations
+@{
+    ViewData["Title"] = "Delete";
+}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">Rent<span>Quest</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Listing">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
+
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">@ViewBag.sessionv</a></li>
+
+
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br />
+
+<h2 class="text-info">Circulation Delete</h2>
+<form asp-action="Delete" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border row">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input type="hidden" asp-for="Id" />
+                    <input asp-for="Name" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Monthly_Rent"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Monthly_Rent" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Monthly_Rent" class="text-danger"></span>
+            </div>
+            @*<div class="form-group row">
+            <div class="col-4">
+                <label asp-for="Image"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Image" class="form-control" type="file" />
+            </div>
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>*@
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Location"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Location" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Cdetails"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Cdetails" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Cdetails" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Flat_No"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Flat_No" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="Flat_No" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="House_No"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="House_No" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="House_No" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="SizeSQFT"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="SizeSQFT" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="SizeSQFT" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="num_bath"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="num_bath" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="num_bath" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="num_bed"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="num_bed" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="num_bed" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="CircTypeId"></label>
+                </div>
+                <div class="col-8">
+                    @*<select asp-for="CircTypeId" asp-items="ViewBag.CircTypeId" class="form-control"></select>*@
+                    <input asp-for="CircTypeId" readonly="readonly" class="form-control" />
+                </div>
+                <span asp-validation-for="CircTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="isAvailable"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="isAvailable" readonly="readonly" class="" type="checkbox" />
+                </div>
+                <span asp-validation-for="isAvailable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h3>Do you want to delete this circulation?</h3>
+                <input type="submit" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" value="Delete" />
+                <a asp-action="Index" class="btn btn-success">Back to List</a>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <img src="~/@Model.Image" width="100%" style="border-radius:5px;border:1px solid #efefef" />
+        </div>
+
+    </div>
+</form>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

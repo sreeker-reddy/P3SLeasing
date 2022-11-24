@@ -1,0 +1,93 @@
+﻿@model RentQuest.Models.Circulations
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+@using  RentQuest.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+
+    List<Circulations> circulations = HttpContextAccessor.HttpContext.Session.Get<List<Circulations>>("circulations");
+    Circulations circulation = null;
+    if (circulations != null)
+    {
+        circulation = circulations.FirstOrDefault(c => c.Id == Model.Id);
+    }
+
+}
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">P3S<span>Leasing</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-area="Unregistered" asp-controller="Unreg" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Unregistered" asp-controller="Unreg" asp-action="Listing">Property</a></li>
+                    <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Menu" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-In</a></li>
+                    <li class="nav-item cta cta-colored"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Menu2" class="nav-link"><span class="icon-pencil"></span> Sign-Up</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-12 Properties-single mt-4 mb-5 ftco-animate">
+                        <h2>@Model.Name</h2>
+                        <p class="rate mb-4">
+                            <span class="loc">Location: @Model.Location , @Model.Cdetails</span>
+                        </p>
+                        <div class="d-md-flex mt-5 mb-5">
+                            <ul>
+                                <li><span>Owner Email: </span> @Model.HEmail</li>
+                                <li><span>Circulation Type: </span>@Model.CircTypes.CircType</li>
+                                <li><span>Monthly Rent: </span>@Model.Monthly_Rent BDT</li>
+                                
+                                <li><span>House No.: </span> @Model.House_No</li>
+                                <li><span>Flat No.: </span> @Model.Flat_No</li>
+
+                            </ul>
+                            <ul class="ml-md-5">
+                                <li><span>Area: </span>@Model.SizeSQFT SQFT</li>
+                                <li><span>Bed Rooms: </span>@Model.num_bed</li>
+                                <li><span>Bath Rooms: </span>@Model.num_bath</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 properties-single ftco-animate mb-5 mt-4">
+                            <h3 class="mb-4">Property Layout</h3>
+                            <div class="block-16">
+                                <figure>
+                                    <img src="/Content/images/properties-6.jpg" alt="Image placeholder" class="img-fluid">
+                                    <a href="https://vimeo.com/45830194" class="play-button popup-vimeo"><span class="icon-play"></span></a>
+                                </figure>
+                            </div>
+                        </div>
+                </div>
+            </div> <!-- .col-md-8 -->
+            <div class="col-lg-4 sidebar ftco-animate">
+                <div>
+                    <div class="p-4 rounded border row">
+
+                        <div class="form-group row">
+                            <div><a asp-area="Unregistered" asp-action="OwCirc" asp-controller="Unreg" asp-route-id="@Model.Id" class="btn btn-success pull-right btn-outline-info">Owner Details</a></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!-- .section -->
