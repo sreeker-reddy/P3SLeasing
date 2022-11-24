@@ -21,20 +21,17 @@ namespace RentQuest.Controllers
     [Area("Owner")]
     public class OwnerController : Controller
     {
-        //private readonly UserManager<IdentityUser> userManager;
 
         private ApplicationDbContext _db;
 
-        public OwnerController(ApplicationDbContext db/*, UserManager<IdentityUser> _userManager*/)
+        public OwnerController(ApplicationDbContext db)
         {
             _db = db;
-            //userManager = _userManager;
         }
 
         public IActionResult Index()
         {
             ViewBag.sessionv = HttpContext.Session.GetString("ow_email");
-            //ViewBag.userid = userManager.GetUserId(HttpContext.User);
             return View();
         }
 
@@ -312,7 +309,7 @@ namespace RentQuest.Controllers
             List<Circulations> cir = _db.Circulations.ToList();
             List<OwnerClass> own = _db.Owners.ToList();
             List<VisitRequest> vis = _db.VisitRequests.ToList();
-            List<ReqDetails> rd = _db.ReqDetails.ToList();
+            List<ReqDetails> rd = _db.ReqDetails.Where(r => r.Approved==0).ToList();
 
             var newjoin = from t1 in ten
                           join v1 in vis on t1.TEmail equals v1.Email /*into table1*/
@@ -348,6 +345,26 @@ namespace RentQuest.Controllers
             return View(oc);
         }
 
+        public ActionResult ApproveRequest(int? id)
+        {
+            var request = _db.ReqDetails.Where(r => r.Id == id.Value).FirstOrDefault();
+            request.Approved = 1;
+            _db.ReqDetails.Update(request);
 
+            _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ReceivedReq));
+        }
+
+        public ActionResult DenyRequest(int? id)
+        {
+            var request = _db.ReqDetails.Where(r => r.Id == id.Value).FirstOrDefault();
+            request.Approved = 2;
+            _db.ReqDetails.Update(request);
+
+            _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(ReceivedReq));
+        }
     }
 }

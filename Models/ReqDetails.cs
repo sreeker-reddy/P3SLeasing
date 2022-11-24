@@ -23,5 +23,7 @@ namespace RentQuest.Models
 
         [ForeignKey("C_Id")]
         public Circulations Circulation { get; set; }
+
+        public int Approved { get; set; }
     }
 }

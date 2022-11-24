@@ -280,11 +280,11 @@ namespace RentQuest.Controllers
                     visitRequest.ReqDate = DateTime.UtcNow;
 
                     _db.VisitRequests.Add(visitRequest);
-                    _db.SaveChanges();
+                    var visitRequestDB = _db.SaveChanges();
 
                     ReqDetails reqDetails = new ReqDetails();
                     reqDetails.C_Id = id.Value;
-                    reqDetails.ReqId = Int32.Parse(GetReqNo()) - 1;
+                    reqDetails.ReqId = visitRequest.Id;
 
                     _db.ReqDetails.Add(reqDetails);
                     _db.SaveChanges();
@@ -490,7 +490,7 @@ namespace RentQuest.Controllers
             List<Circulations> cir = _db.Circulations.ToList();
             List<OwnerClass> own = _db.Owners.ToList();
             List<VisitRequest> vis = _db.VisitRequests.ToList();
-            List<ReqDetails> rd = _db.ReqDetails.ToList();
+            List<ReqDetails> rd = _db.ReqDetails.ToList().Where(r => r.Approved!=0).ToList() ;
 
             var newjoin = from t1 in ten
                           join v1 in vis on t1.TEmail equals v1.Email /*into table1*/
@@ -585,7 +585,7 @@ namespace RentQuest.Controllers
 
             return View(oc);
         }
-        
+
         public string GetReqNo()
         {
             int rowCount = _db.VisitRequests.ToList().Count() + 1;

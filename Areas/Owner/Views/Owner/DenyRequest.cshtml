@@ -1,0 +1,72 @@
+﻿@using RentQuest.Models
+@model IEnumerable<RentQuest.Models.OwnerJoinClass>
+@{
+    ViewData["Title"] = "ReceivedReq";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" asp-area="Owner" asp-controller="Owner" asp-action="Index">P3S<span>Leasing</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">Home</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="ReceivedReq">Received Requests</a></li>
+
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="OwCirc" asp-action="Index">Manage your Properties</a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Owner" asp-controller="Owner" asp-action="Index">@ViewBag.sessionv</a></li>
+
+
+                <li class="nav-item cta"><a asp-area="Unregistered" asp-controller="Unreg" asp-action="Index" class="nav-link ml-lg-2"><span class="icon-user"></span> Sign-out</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<div class="container">
+    @*<div class="row">*@
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                @*<th>Image</th>
+                    <th>Name</th>
+                    <th>Monthly Rent</th>*@
+                <th>Property Name</th>
+                <th>Image</th>
+                <th>Location</th>
+                <th>Tenant's Email</th>
+                <th>Tenant's Name</th>
+                <th>Tenant's Phone</th>
+                <th>Request Date</th>
+                <th>Approve/Deny</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            <img src="~/@item.Image" width="200px" height="150px" />
+                        </td>*@
+                    <td>@item.CDetails.Name</td>
+                    <td><img src="~/@item.CDetails.Image" width="200px" height="150px" /></td>
+                    <td>@item.CDetails.Location</td>
+                    <td>@item.TDetails.TEmail</td>
+                    <td>@item.TDetails.TName</td>
+                    <td>@item.TDetails.TPhone</td>
+                    <td>@item.VDetails.ReqDate</td>
+                    <td>
+                        <span><a asp-area="Owner" asp-action="ApproveRequest" asp-controller="Owner" asp-route-id="@item.ReqDetails.Id" class="btn btn-success">Approve</a></span>
+                        <span><a asp-area="Owner" asp-action="DenyRequest" asp-controller="Owner" asp-route-id="@item.ReqDetails.Id" class="btn btn-danger">Deny</a></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*</div>*@
+</div>

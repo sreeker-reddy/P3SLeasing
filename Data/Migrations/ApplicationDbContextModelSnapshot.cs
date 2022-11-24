@@ -304,6 +304,8 @@ namespace RentQuest.Data.Migrations
 
                     b.Property<int>("C_Id");
 
+                    b.Property<int>("Approved");
+
                     b.Property<int>("ReqId");
 
                     b.HasKey("Id");

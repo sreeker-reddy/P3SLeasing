@@ -83,14 +83,20 @@
                 <td>@item.OwDetails.HName</td>
                 <td>@item.OwDetails.HPhone</td>
                 <td>@item.VDetails.ReqDate</td>
-
-                @*<td>@item.CircTypes.CircType</td>
-        <td>@item.Location</td>*@
-                @*<td>
-            <a asp-area="Tenant" asp-action="Remove" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-danger">
-                <i class="fas fa-trash-alt"></i>
-            </a>
-        </td>*@
+                @if (@item.ReqDetails.Approved == 1)
+                {
+                    <td><a asp-action="Detail" asp-controller="Home" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info">Sign Lease</a></td>
+                }
+                else
+                {
+                    if (@item.ReqDetails.Approved == 2)
+                    {
+                        <td>
+                            <a>Not Approved</a>
+                            <div>Please contact Owner for More Details</div>
+                        </td>
+                    }
+                }
             </tr>
             }
         </tbody>
