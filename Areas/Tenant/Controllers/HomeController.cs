@@ -585,6 +585,11 @@ namespace RentQuest.Controllers
 
             return View(oc);
         }
-
+        
+        public string GetReqNo()
+        {
+            int rowCount = _db.VisitRequests.ToList().Count() + 1;
+            return rowCount.ToString("000");
+        }
     }
 }
