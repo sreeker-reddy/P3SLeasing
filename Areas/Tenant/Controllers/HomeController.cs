@@ -271,7 +271,25 @@ namespace RentQuest.Controllers
                 }
                 circulations.Add(circulation);
                 HttpContext.Session.Set("circulations", circulations);
+                
+                if(id!=null)
+                {
+                    VisitRequest visitRequest = new VisitRequest();
+                    visitRequest.ReqNo = GetReqNo();
+                    visitRequest.Email = ViewBag.sessionv;
+                    visitRequest.ReqDate = DateTime.UtcNow;
 
+                    _db.VisitRequests.Add(visitRequest);
+                    _db.SaveChanges();
+
+                    ReqDetails reqDetails = new ReqDetails();
+                    reqDetails.C_Id = id.Value;
+                    reqDetails.ReqId = Int32.Parse(GetReqNo()) - 1;
+
+                    _db.ReqDetails.Add(reqDetails);
+                    _db.SaveChanges();
+                }
+                
                 ViewBag.messagenewsuccess = "Circulation added to Request Queue";
                 return View(circulation);
         }
