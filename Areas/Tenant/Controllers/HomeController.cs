@@ -603,7 +603,7 @@ namespace RentQuest.Controllers
                 _db.SaveChangesAsync();
             }
 
-            return View();
+            return View(); // Redirect to utilities
         }
     }
 }
