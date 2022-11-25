@@ -591,5 +591,19 @@ namespace RentQuest.Controllers
             int rowCount = _db.VisitRequests.ToList().Count() + 1;
             return rowCount.ToString("000");
         }
+        
+        public ActionResult SignLease(int? id)
+        {
+            if(id!=null)
+            {
+                var circulation = _db.Circulations.Where(c => c.Id == id.Value).FirstOrDefault();
+                circulation.isAvailable = false;
+
+                _db.Circulations.Update(circulation);
+                _db.SaveChangesAsync();
+            }
+
+            return View();
+        }
     }
 }
