@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{253F37A9-5D55-427C-A929-86151C695222}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Areas/Tenant/Views/Home/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Areas/Tenant/Views/Home/Utilities.cshtml">
     <Files>
-      <File FileName="Areas/Tenant/Views/Home/SentReq.cshtml" Line="93" Column="16" />
-      <File FileName="Areas/Tenant/Views/Home/Index.cshtml" Line="34" Column="1" />
-      <File FileName="Areas/Owner/Views/Owner/ReceivedReq.cshtml" />
+      <File FileName="Areas/Tenant/Controllers/HomeController.cs" Line="293" Column="64" />
+      <File FileName="Areas/Tenant/Views/Home/Utilities.cshtml" Line="8" Column="13" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,16 +10,11 @@
           <Node name="P3SLeasing" expanded="True">
             <Node name="P3SLeasing" expanded="True">
               <Node name="Areas" expanded="True">
-                <Node name="Owner" expanded="True">
-                  <Node name="Views" expanded="True">
-                    <Node name="Owner" expanded="True" />
-                  </Node>
-                </Node>
                 <Node name="Tenant" expanded="True">
                   <Node name="Controllers" expanded="True" />
                   <Node name="Views" expanded="True">
                     <Node name="Home" expanded="True">
-                      <Node name="Index.cshtml" selected="True" />
+                      <Node name="Utilities.cshtml" selected="True" />
                     </Node>
                   </Node>
                 </Node>

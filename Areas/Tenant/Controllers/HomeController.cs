@@ -290,7 +290,7 @@ namespace RentQuest.Controllers
                     _db.SaveChanges();
                 }
                 
-                ViewBag.messagenewsuccess = "Circulation added to Request Queue";
+                ViewBag.messagenewsuccess = "Property added to Request Queue";
                 return View(circulation);
         }
             return View(circulation);
@@ -395,7 +395,7 @@ namespace RentQuest.Controllers
 
                 if (searchCirc != null)
                 {
-                    ViewBag.messagenewsecdanger = "This circulation already exists in wishlist";
+                    ViewBag.messagenewsecdanger = "This Property already exists in wishlist";
 
                     return View(circulation);
                 }
@@ -422,7 +422,7 @@ namespace RentQuest.Controllers
                 sqlComm.ExecuteNonQuery();
                 sqlComm.Connection.Close();
 
-                ViewBag.messagenewsecsuccess = "Circulation added to wishlist";
+                ViewBag.messagenewsecsuccess = "Property added to wishlist";
                 return View(circulation);
             }
             return View(circulation);
