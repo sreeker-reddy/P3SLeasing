@@ -85,7 +85,7 @@
                 <td>@item.VDetails.ReqDate</td>
                 @if (@item.ReqDetails.Approved == 1)
                 {
-                    <td><a asp-action="Detail" asp-controller="Home" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info">Sign Lease</a></td>
+                    <td><a asp-action="SignLease" asp-controller="Home" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info">Sign Lease</a></td>
                 }
                 else
                 {
