@@ -538,8 +538,7 @@ namespace RentQuest.Controllers
                 _db.Circulations.Update(circulation);
                 _db.SaveChangesAsync();
             }
-
-            return View(); // Redirect to utilities
+            return View();
         }
     }
 }
