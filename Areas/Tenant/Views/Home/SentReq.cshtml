@@ -72,34 +72,30 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    @*<td>
-                            <img src="~/@item.Image" width="200px" height="150px" />
-                        </td>*@
-                    <td><a>@item.CDetails.Name</a></td>
-                    <td><img src="~/@item.CDetails.Image" width="200px" height="150px" /></td>
-                    <td>@item.CDetails.Location</td>
-                    <td>@item.OwDetails.HEmail</td>
-                    <td>@item.OwDetails.HName</td>
-                    <td>@item.OwDetails.HPhone</td>
-                    <td>@item.VDetails.ReqDate</td>
-                    @if (@item.ReqDetails.Approved == 1)
+            <tr>
+                <td><a>@item.CDetails.Name</a></td>
+                <td><img src="~/@item.CDetails.Image" width="200px" height="150px" /></td>
+                <td>@item.CDetails.Location</td>
+                <td>@item.OwDetails.HEmail</td>
+                <td>@item.OwDetails.HName</td>
+                <td>@item.OwDetails.HPhone</td>
+                <td>@item.VDetails.ReqDate</td>
+                @if (@item.ReqDetails.Approved == 1)
+                {
+                    <td><a asp-action="SignLease" asp-controller="Home" asp-route-id="@item.CDetails.Id" class="btn btn-success btn-outline-info" onclick="sign()">Sign Lease</a></td>
+                }
+                else
+                {
+                    if (@item.ReqDetails.Approved == 2)
                     {
                         <td>
-                            <a asp-action="" asp-controller="" asp-route-id="" class="btn btn-success btn-outline-info" onclick="sign()" id="signbtn">Sign Lease</a>
+                            <span>Not Approved</span>
+                            <div>Please contact Owner for More Details</div>
                         </td>
                     }
-                    else
-                    {
-                        if (@item.ReqDetails.Approved == 2)
-                        {
-                            <td>
-                                <a>Not Approved</a>
-                                <div>Please contact Owner for More Details</div>
-                            </td>
-                        }
-                    }
-                </tr>
+                }
+
+            </tr>
             }
         </tbody>
     </table>

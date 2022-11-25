@@ -338,6 +338,9 @@ namespace RentQuest.Controllers
         {
             ViewBag.sessionv = HttpContext.Session.GetString("email");
             List<Circulations> circulations = HttpContext.Session.Get<List<Circulations>>("circulations");
+            var dbRequestDetails = _db.ReqDetails.ToList().Where(x => x.Approved == 1).Select(x => x.C_Id).ToList();
+
+            circulations = circulations.Where(c => !dbRequestDetails.Contains(c.Id)).ToList();
             if (circulations==null)
             {
                 circulations = new List<Circulations>();
@@ -400,18 +403,6 @@ namespace RentQuest.Controllers
                     return View(circulation);
                 }
 
-
-
-
-
-                //    newWl.C_Id = circulation.Id;
-                //    newWl.T_Email = HttpContext.Session.GetString("email");
-                //    _db.WishList.Add(newWl);
-                //    await _db.SaveChangesAsync();
-
-
-                //return RedirectToAction(nameof(Index));
-
                 string mainconn = configuration.GetConnectionString("DefaultConnection");
                 SqlConnection sqlConn = new SqlConnection(mainconn);
 
@@ -427,43 +418,6 @@ namespace RentQuest.Controllers
             }
             return View(circulation);
         }
-
-
-        //[ActionName("Second")]
-        //public ActionResult RemoveSecond(int? id)
-        //{
-        //    List<Circulations> circulations2 = HttpContext.Session.Get<List<Circulations>>("circulations");
-        //    if (circulations2 != null)
-        //    {
-        //        var circulation2 = circulations2.FirstOrDefault(c => c.Id == id);
-
-        //        if (circulation2 != null)
-        //        {
-        //            circulations2.Remove(circulation2);
-        //            HttpContext.Session.Set("circulations2", circulations2);
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-
-
-        //[HttpPost]
-        //public ActionResult RemoveS(int? id)
-        //{
-        //    List<Circulations> circulations2 = HttpContext.Session.Get<List<Circulations>>("circulations2");
-        //    if (circulations2 != null)
-        //    {
-        //        var circulation2 = circulations2.FirstOrDefault(c => c.Id == id);
-
-        //        if (circulation2 != null)
-        //        {
-        //            circulations2.Remove(circulation2);
-        //            HttpContext.Session.Set("circulations2", circulations2);
-        //        }
-        //    }
-        //    return RedirectToAction(nameof(Index));
-        //}
 
         public ActionResult WLSecond()
         {
@@ -521,14 +475,6 @@ namespace RentQuest.Controllers
             ViewBag.sessionv = HttpContext.Session.GetString("email");
             if (ModelState.IsValid)
             {
-                //var searchCirc = _db.WishList.FirstOrDefault(c => c.C_Id == newWl.C_Id);
-
-                //if (searchCirc != null)
-                //{
-                //    ViewBag.message = "This circulation already exists";
-                //    //ViewData["CircTypeId"] = new SelectList(_db.CircTypes.ToList(), "Id", "CircType");
-                //    return RedirectToAction(nameof(Index));
-                //}
 
                 if (id == null)
                 {
@@ -539,16 +485,6 @@ namespace RentQuest.Controllers
                 {
                     return NotFound();
                 }
-
-                //if (ModelState.IsValid)
-                //{
-                //    newWl.C_Id = circulation.Id;
-                //    newWl.T_Email = HttpContext.Session.GetString("email");
-                //    _db.WishList.Add(newWl);
-                //    await _db.SaveChangesAsync();
-
-                //}
-                //return RedirectToAction(nameof(Index));
 
                 string mainconn = configuration.GetConnectionString("DefaultConnection");
                 SqlConnection sqlConn = new SqlConnection(mainconn);
@@ -590,6 +526,20 @@ namespace RentQuest.Controllers
         {
             int rowCount = _db.VisitRequests.ToList().Count() + 1;
             return rowCount.ToString("000");
+        }
+        
+        public ActionResult SignLease(int? id)
+        {
+            if(id!=null)
+            {
+                var circulation = _db.Circulations.Where(c => c.Id == id.Value).FirstOrDefault();
+                circulation.isAvailable = false;
+
+                _db.Circulations.Update(circulation);
+                _db.SaveChangesAsync();
+            }
+
+            return View(); // Redirect to utilities
         }
     }
 }
