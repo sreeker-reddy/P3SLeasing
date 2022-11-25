@@ -338,9 +338,9 @@ namespace RentQuest.Controllers
         {
             ViewBag.sessionv = HttpContext.Session.GetString("email");
             List<Circulations> circulations = HttpContext.Session.Get<List<Circulations>>("circulations");
-            var dbRequestDetails = _db.ReqDetails.ToList().Where(x => x.Approved == 1).Select(x => x.C_Id).ToList();
+            //var dbRequestDetails = _db.ReqDetails.ToList().Where(x => x.Approved == 1).Select(x => x.C_Id).ToList();
 
-            circulations = circulations.Where(c => !dbRequestDetails.Contains(c.Id)).ToList();
+            //circulations = circulations.Where(c => !dbRequestDetails.Contains(c.Id)).ToList();
             if (circulations==null)
             {
                 circulations = new List<Circulations>();
